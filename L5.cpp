@@ -1,30 +1,32 @@
-/*BFS Traversal of Graph
+
+
+/*DFS of a Graph
 
 class Solution {
-  public:
-    // Function to return Breadth First Traversal of given graph.
-    vector<int> bfsOfGraph(int V, vector<int> adj[]) {
-        int vis[V]={0};
-        vis[0]=1;
-        queue<int>q;
+    
+  private:
+    void dfs(int node,vector<int>adj[],int vis[],vector<int>&ans){
+        vis[node]=1;
+        ans.push_back(node);
+        //Traverse all neighbours
         
-        q.push(0);
-        vector<int>bfs;
-        while(!q.empty()){
-            int node=q.front();
-            q.pop();
-            bfs.push_back(node);
-            
-            for(auto i:adj[node]){
-                if(!vis[i]){
-                    vis[i]=1;
-                    q.push(i);
-                }
+        for(auto it:adj[node]){
+            if(!vis[it]){
+                dfs(it,adj,vis,ans);
             }
         }
-        return bfs;
+    }
+  public:
+    // Function to return a list containing the DFS traversal of the graph.
+    vector<int> dfsOfGraph(int V, vector<int> adj[]) {
+        int vis[V]={0};
+        
+        int start=0;
+        vector<int>ans;
+        dfs(start,adj,vis,ans);
+        return ans;
+        
     }
 };
-
 
 */
